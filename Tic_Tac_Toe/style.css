@@ -2,12 +2,10 @@
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #0b0b1a;
-            /* Dark background for neon */
             color: #fff;
             overflow-x: hidden;
         }
 
-        /* Background Glow Effects */
         body::before {
             content: '';
             position: absolute;
@@ -215,7 +213,6 @@
             height: 300px;
         }
 
-        /* Game Board */
         .grid {
             background: rgba(0, 0, 0, 0.6);
             padding: 15px;
@@ -225,7 +222,6 @@
             position: relative;
         }
 
-        /* Grid glowing border effect */
         .grid::after {
             content: '';
             position: absolute;
@@ -270,7 +266,7 @@
             border-color: #0ff;
         }
 
-        /* Styling for X and O added dynamically */
+        /*  for X and O   */
         .col:not(:empty) {
             transform: scale(1);
             animation: pop-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
