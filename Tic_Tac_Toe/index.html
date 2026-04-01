@@ -1,11 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
-    
+    <div class="container">
+        <h1>Tic Tac Toe</h1>
+        <p>
+            Experience the classic game of strategy! Take turns with a friend to align three marks in a row,
+            column, or diagonal. Use X or O to claim your victory in this modern neon challenge.
+        </p>
+        <div class="game">
+
+            <!-- Left Panel -->
+            <div class="left-panel">
+                <h2>Game Options</h2>
+
+                <button onclick="resetGame()">Reset Game</button>
+
+                <div class="choice">
+                    <p id="info-p1">Player 1: <span>X</span></p>
+                    <p id="info-p2">Player 2: <span>O</span></p>
+                </div>
+            </div>
+
+            <!-- Game Board -->
+            <div class="grid">
+                <div class="row">
+                    <div onclick="handleClick(this)" id="0" class="col"></div>
+                    <div onclick="handleClick(this)" id="1" class="col"></div>
+                    <div onclick="handleClick(this)" id="2" class="col"></div>
+                </div>
+                <div class="row">
+                    <div onclick="handleClick(this)" id="3" class="col"></div>
+                    <div onclick="handleClick(this)" id="4" class="col"></div>
+                    <div onclick="handleClick(this)" id="5" class="col"></div>
+                </div>
+                <div class="row">
+                    <div onclick="handleClick(this)" id="6" class="col"></div>
+                    <div onclick="handleClick(this)" id="7" class="col"></div>
+                    <div onclick="handleClick(this)" id="8" class="col"></div>
+                </div>
+            </div>
+
+
+            <!-- Right Panel -->
+            <div class="right-panel">
+                <h2>Score</h2>
+                <p id="player1-score">Player 1: 0</p>
+                <p id="player2-score">Player 2: 0</p>
+            </div>
+
+        </div>
+
+        <div id="result">
+            <div class="result-card">
+                <h1 id="result-text"></h1>
+                <p class="subtitle">Great Move! 🎉</p>
+                <button onclick="resetGame()">Play Again</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
+
 </html>
