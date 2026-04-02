@@ -1,3 +1,9 @@
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -57,7 +63,7 @@
             }
         }
 
-        p {
+        .para {
             font-size: 16px;
             line-height: 1.6;
             color: #a0c0ff;
@@ -113,15 +119,16 @@
         }
 
         #player1-score {
+            width: 100%;
             border: 1px solid rgba(0, 255, 255, 0.3);
             border-left: 4px solid #0ff;
             box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.05);
         }
 
         #player2-score {
-            border: 1px solid rgba(255, 0, 255, 0.3);
-            border-left: 4px solid #f0f;
-            box-shadow: inset 0 0 10px rgba(255, 0, 255, 0.05);
+            border: 1px solid rgba(144, 238, 144, 0.5);
+            border-left: 4px solid #62eb62;
+            box-shadow: inset 0 0 10px rgba(144, 238, 144, 0.5);
         }
 
         .choice {
@@ -156,8 +163,8 @@
         }
 
         #info-p2 span {
-            color: #f0f;
-            text-shadow: 0 0 10px #f0f;
+            color: #62eb62;
+            text-shadow: 0 0 10px #62eb62;
         }
 
         #info-p1 {
@@ -165,7 +172,7 @@
         }
 
         #info-p2 {
-            border-left: 3px solid rgba(255, 0, 255, 0.4);
+            border-left: 3px solid rgba(144, 238, 144, 0.5);
         }
 
         button {
@@ -251,12 +258,22 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #fff;
             font-size: 72px;
             font-weight: bold;
             background: rgba(0, 255, 255, 0.03);
+
+        }
+
+        .playerX {
             box-shadow: inset 0 0 13.5px rgba(0, 255, 255, 0.1);
+            color: #fff;
             text-shadow: 0 0 9px #fff, 0 0 18px #0ff, 0 0 27px #0ff;
+        }
+
+        .playerO {
+            box-shadow: inset 0 0 13.5px rgba(144, 238, 144, 0.2);
+            color: #60fc60;
+            text-shadow: 0 0 9px #62eb62, 0 0 18px #90ee90, 0 0 27px #e0ffe0;
         }
 
         .col:hover {
@@ -370,4 +387,70 @@
         .result-card button:hover {
             box-shadow: 0 0 27px #f0f, inset 0 0 18px #f0f;
             background: rgba(255, 0, 255, 0.1);
+        }
+
+        /* ----- Tab Responsive --- */
+        @media (max-width: 1024px) {
+            .game {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+
+            .left-panel,
+            .right-panel {
+                width: 100%;
+                max-width: 400px;
+                order: 2;
+            }
+
+            .grid {
+                order: 1;
+            }
+
+            h1 {
+                font-size: 48px;
+            }
+
+            p {
+                max-width: 90%;
+            }
+        }
+
+        /* --- Mobile Responsive ---- */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 10px;
+            }
+
+            h1 {
+                font-size: 36px;
+                letter-spacing: 2px;
+            }
+
+            .col {
+                height: 85px;
+                width: 85px;
+                font-size: 48px;
+            }
+
+            .left-panel,
+            .right-panel {
+                padding: 15px;
+            }
+
+            .left-panel h2,
+            .right-panel h2 {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+
+            .result-card {
+                padding: 30px 20px;
+                width: 85%;
+            }
+
+            #result-text {
+                font-size: 32px;
+            }
         }
