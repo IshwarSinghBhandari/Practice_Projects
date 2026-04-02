@@ -16,5 +16,4 @@ A collection of minimalist, high-performance web applications and extensions bui
     3. Click **Load unpacked** and select the `Color_Picker_Extension` folder.
 - **AI-Assisted:** This project used AI for help in design and speed.
 
----
-**Deployment:** Optimized and hosted via the EdgeOne platform.
+
