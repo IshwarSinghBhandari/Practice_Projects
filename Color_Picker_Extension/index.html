@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Picker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <script src="tailwind.js"></script>
+    <style>
+        html,
+        body {
+            width: 420px;
+            margin: 0;
+            padding: 0;
+            background: #0f0f13;
+            height: auto !important;
+        }
+
+        body.compact-mode {
+            padding: 0 !important;
+        }
+
+        body.compact-mode #mainCard {
+            padding: 1.25rem !important;
+            gap: 1rem !important;
+            border-radius: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+    <style type="text/tailwindcss">
+        @theme {
+      --font-sans: 'Inter', sans-serif;
+      --color-primary: #8b5cf6;
+      --color-primary-glow: rgba(139,92,246,0.3);
+      --color-accent: #06b6d4;
+      --color-bg: #0f0f13;
+      --color-card: #1a1a24;
+      --color-surface: #22222f;
+      --color-input: #2a2a3a;
+      --color-border: rgba(255,255,255,0.07);
+      --color-border-active: rgba(139,92,246,0.5);
+      --color-text: #f1f0f5;
+      --color-muted: #9390a8;
+      --color-faint: #5e5c72;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Custom range slider */
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 9999px;
+      outline: none;
+      cursor: pointer;
+      background: transparent;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: white;
+      border: 2px solid rgba(255,255,255,0.8);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .pulse-dot {
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes slide-up {
+      from { transform: translateX(-50%) translateY(80px); }
+      to   { transform: translateX(-50%) translateY(0); }
+    }
+    .toast-enter {
+      animation: slide-up 0.35s cubic-bezier(0.34,1.56,0.64,1) forwards;
+    }
+  </style>
+</head>
+
+<body class="w-[420px] bg-[#0f0f13] select-none"
+    style="background-image: radial-gradient(ellipse at 20% 10%, rgba(139,92,246,0.12) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(6,182,212,0.08) 0%, transparent 50%);">
+
+    <!-- Card -->
+    <div id="mainCard"
+        class="w-full bg-[#1a1a24] border border-white/[0.07] rounded-3xl p-8 flex flex-col gap-6 shadow-2xl">
+
+        <!-- Header -->
+        <div class="toggle-pick flex items-center justify-between">
+            <div>
+                <h1 class="text-[18px] font-semibold text-[#f1f0f5] tracking-tight">Color Picker</h1>
+                <p class="toggle-pick text-[11px] text-[#5e5c72] mt-0.5">Pick, convert &amp; copy colors</p>
+            </div>
+            <div
+                class="flex items-center gap-1.5 bg-violet-500/10 border border-violet-500/25 px-3 py-1.5 rounded-full text-[11px] font-medium text-violet-400">
+                <span class="pulse-dot w-1.5 h-1.5 rounded-full bg-violet-400 shadow-[0_0_6px_#8b5cf6]"></span>
+                Active
+            </div>
+        </div>
+
+        <!-- Color Preview -->
+        <div class="toggle-pick relative rounded-2xl overflow-hidden">
+            <div id="previewBox" class="w-full h-40 rounded-2xl transition-all duration-300"
+                style="background: linear-gradient(135deg, #8b5cf6, #06b6d4);"></div>
+
+            <!-- Gradient overlay + hex badge -->
+            <div class="absolute inset-0 rounded-2xl flex items-end p-3.5"
+                style="background: linear-gradient(to bottom, transparent 55%, rgba(0,0,0,0.35) 100%);">
+                <span id="previewHex"
+                    class="bg-black/40 backdrop-blur-md border border-white/10 rounded-lg px-3 py-1.5 text-[13px] font-semibold text-white tracking-widest font-mono transition-all duration-300">
+                    #8B5CF6
+                </span>
+            </div>
+
+            <!-- Native color picker button (centered) -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                  w-14 h-14 rounded-full overflow-hidden
+                  border-[3px] border-white/30
+                  shadow-[0_0_0_5px_rgba(255,255,255,0.1),0_8px_24px_rgba(0,0,0,0.4)]
+                  hover:shadow-[0_0_0_5px_rgba(255,255,255,0.2),0_8px_24px_rgba(0,0,0,0.5)]
+                  hover:scale-110 transition-all duration-200 cursor-pointer">
+                <input type="color" id="nativeColor" value="#8b5cf6" title="Open color palette"
+                    class="block w-20 h-20 -m-3 cursor-pointer border-0 outline-none bg-transparent" />
+            </div>
+        </div>
+
+        <!-- Format Tabs + Value Input -->
+        <div class="toggle-pick flex flex-col gap-2.5">
+            <span class="text-[10px] font-semibold text-[#5e5c72] uppercase tracking-widest">Color Value</span>
+
+            <!-- Tabs -->
+            <div class="flex gap-1.5" id="formatTabs">
+                <button data-format="hex" class="format-tab flex-1 py-1.5 rounded-[10px] text-[11px] font-semibold tracking-wide transition-all duration-200
+                       bg-violet-500/15 border border-violet-500/50 text-violet-400">
+                    HEX
+                </button>
+                <button data-format="rgb"
+                    class="format-tab flex-1 py-1.5 rounded-[10px] text-[11px] font-semibold tracking-wide transition-all duration-200
+                       bg-[#22222f] border border-white/[0.07] text-[#9390a8] hover:text-[#f1f0f5] hover:border-white/15">
+                    RGB
+                </button>
+                <button data-format="hsl"
+                    class="format-tab flex-1 py-1.5 rounded-[10px] text-[11px] font-semibold tracking-wide transition-all duration-200
+                       bg-[#22222f] border border-white/[0.07] text-[#9390a8] hover:text-[#f1f0f5] hover:border-white/15">
+                    HSL
+                </button>
+            </div>
+
+            <!-- Input + Copy -->
+            <div
+                class="flex items-center bg-[#2a2a3a] border border-white/[0.07] rounded-[10px] overflow-hidden
+                  focus-within:border-violet-500/50 focus-within:shadow-[0_0_0_3px_rgba(139,92,246,0.25)] transition-all duration-200">
+                <input id="colorValueInput" type="text" value="#8b5cf6" spellcheck="false"
+                    class="flex-1 bg-transparent border-none outline-none px-3.5 py-3 text-[13px] font-medium text-[#f1f0f5] font-mono tracking-wide" />
+                <button id="copyBtn" class="flex items-center gap-1.5 px-3.5 py-3 border-l border-white/[0.07] text-[11px] font-semibold text-[#9390a8]
+                       hover:bg-violet-500/10 hover:text-violet-400 transition-all duration-200">
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    Copy
+                </button>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="toggle-pick h-px bg-white/[0.07]"></div>
+
+        <!-- RGB Sliders -->
+        <div class="toggle-pick flex flex-col gap-3.5">
+            <span class="text-[10px] font-semibold text-[#5e5c72] uppercase tracking-widest">RGB Channels</span>
+
+            <!-- R -->
+            <div class="flex items-center gap-3">
+                <span class="text-[11px] font-bold text-[#5e5c72] w-3.5">R</span>
+                <div class="flex-1 relative h-1.5 rounded-full"
+                    style="background: linear-gradient(to right, #000, #ff4444);">
+                    <input type="range" class="absolute" id="sliderR" min="0" max="255" value="139" />
+                </div>
+                <span id="valR" class="text-[12px] font-semibold text-[#9390a8] w-8 text-right tabular-nums">139</span>
+            </div>
+
+            <!-- G -->
+            <div class="flex items-center gap-3">
+                <span class="text-[11px] font-bold text-[#5e5c72] w-3.5">G</span>
+                <div class="flex-1 relative h-1.5 rounded-full"
+                    style="background: linear-gradient(to right, #000, #44ff44);">
+                    <input type="range" class="absolute" id="sliderG" min="0" max="255" value="92" />
+                </div>
+                <span id="valG" class="text-[12px] font-semibold text-[#9390a8] w-8 text-right tabular-nums">92</span>
+            </div>
+
+            <!-- B -->
+            <div class="flex items-center gap-3">
+                <span class="text-[11px] font-bold text-[#5e5c72] w-3.5">B</span>
+                <div class="flex-1 relative h-1.5 rounded-full"
+                    style="background: linear-gradient(to right, #000, #4444ff);">
+                    <input type="range" class="absolute" id="sliderB" min="0" max="255" value="246" />
+                </div>
+                <span id="valB" class="text-[12px] font-semibold text-[#9390a8] w-8 text-right tabular-nums">246</span>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="toggle-pick h-px bg-white/[0.07]"></div>
+
+        <!-- Color Swatches -->
+        <div class="toggle-pick flex flex-col gap-2.5">
+            <span class="text-[10px] font-semibold text-[#5e5c72] uppercase tracking-widest">Palette</span>
+            <div id="paletteGrid" class="grid grid-cols-8 gap-1.5"></div>
+        </div>
+
+        <!-- History -->
+        <div class="flex flex-col gap-2.5">
+            <span class="text-[10px] font-semibold text-[#5e5c72] uppercase tracking-widest">Recent</span>
+            <div id="historyRow" class="flex gap-1.5 items-center">
+                <span class="text-[12px] text-[#5e5c72] italic">No colors picked yet.</span>
+            </div>
+        </div>
+
+        <!-- Pick from Screen Button -->
+        <button id="pickBtn" class="w-full flex items-center justify-center gap-2 py-3.5 rounded-[10px] text-[14px] font-semibold text-white
+                   bg-gradient-to-br from-violet-500 to-cyan-400
+                   shadow-[0_4px_20px_rgba(139,92,246,0.35)]
+                   hover:shadow-[0_8px_28px_rgba(139,92,246,0.45)]
+                   hover:-translate-y-0.5 active:translate-y-0
+                   transition-all duration-200">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path>
+                <circle cx="12" cy="12" r="3" fill="currentColor"></circle>
+            </svg>
+            Pick from Screen
+        </button>
+
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 hidden
+              bg-[#22222f] border border-violet-500/50 rounded-full
+              px-5 py-2.5 text-[13px] font-medium text-violet-400
+              shadow-[0_8px_24px_rgba(0,0,0,0.4)] z-50 pointer-events-none">
+    </div>
+
+    <script src="script.js">
+
+    </script>
+
+</body>
+
+</html>
