@@ -16,4 +16,8 @@ A collection of minimalist, high-performance web applications and extensions bui
     3. Click **Load unpacked** and select the `Color_Picker_Extension` folder.
 - **AI-Assisted:** This project used AI for help in design and speed.
 
-
+## 3. Imagine AI Generator
+- **Live Demo:** https://imagineaigenerator.edgeone.app/
+- **Features:** Generate AI images from text prompts, real-time preview, loading states, and a clean responsive UI.
+- **Tech Stack:** HTML, Tailwind CSS, and Vanilla JavaScript with AI Image Generation API integration.
+- **AI-Assisted:** AI was used to help design prompts and optimize the image generation workflow.
