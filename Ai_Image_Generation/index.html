@@ -142,22 +142,33 @@
                     </button>
                 </div>
 
+            </div>
 
-                <div id="loading-overlay"
-                    class="absolute inset-0 bg-black/80 backdrop-blur-md hidden flex-col items-center justify-center space-y-6">
-                    <div class="relative">
-                        <div class="w-20 h-20 border-2 border-indigo-500/20 rounded-full"></div>
-                        <div
-                            class="absolute top-0 left-0 w-20 h-20 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin">
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-indigo-400 font-bold text-xl tracking-widest uppercase animate-pulse">Rendering
-                        </p>
-                        <p class="text-gray-400 text-sm mt-2"> Please wait for the image to be generated.</p>
-                    </div>
+            <!-- History Section -->
+            <div id="history-section" class="w-full mt-12 hidden">
+                <h3
+                    class="text-xl font-semibold bg-clip-text text-transparent bg-linear-to-r from-gray-100 to-gray-500 mb-6">
+                    Recent Creations</h3>
+                <div id="history-list" class="grid grid-cols-2 lg:grid-cols-4 gap-6">
                 </div>
             </div>
+
+
+            <div id="loading-overlay"
+                class="absolute inset-0 bg-black/80 backdrop-blur-md hidden flex-col items-center justify-center space-y-6">
+                <div class="relative">
+                    <div class="w-20 h-20 border-2 border-indigo-500/20 rounded-full"></div>
+                    <div
+                        class="absolute top-0 left-0 w-20 h-20 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <p class="text-indigo-400 font-bold text-xl tracking-widest uppercase animate-pulse">Rendering
+                    </p>
+                    <p class="text-gray-400 text-sm mt-2"> Please wait for the image to be generated.</p>
+                </div>
+            </div>
+        </div>
 
 
         </div>
