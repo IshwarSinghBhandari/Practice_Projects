@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="ImagineAI: Transform your imagination into high-resolution digital art using next-generation AI image generation. Fast, secure, and intuitive.">
+    <meta name="keywords"
+        content="AI image generation, text to image, digital art, ImagineAI, Clipdrop API, creative AI">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://imagineai.example.com/">
+    <meta property="og:title" content="ImagineAI | Create Magic with Every Prompt">
+    <meta property="og:description"
+        content="Turn your words into stunning artwork in seconds with our advanced AI-powered generator.">
+    <meta property="og:image" content="favicon.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://imagineai.example.com/">
+    <meta property="twitter:title" content="ImagineAI | Create Magic with Every Prompt">
+    <meta property="twitter:description"
+        content="Turn your words into stunning artwork in seconds with our advanced AI-powered generator.">
+    <meta property="twitter:image" content="favicon.png">
+
+    <title>ImagineAI | Create Magic with Every Prompt</title>
+
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Poppins:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="bg-black text-white font-['Outfit'] min-h-screen overflow-x-hidden selection:bg-indigo-500/30">
+    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+        <div class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px]">
+        </div>
+        <div class="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-rose-600/10 rounded-full blur-[120px]">
+        </div>
+        <div class="absolute top-[20%] left-[10%] w-[300px] h-[300px] bg-blue-600/10 rounded-full blur-[100px]"></div>
+    </div>
+
+    <main class="flex flex-col items-center justify-center px-4 py-12 min-h-screen max-w-6xl mx-auto relative z-10">
+
+        <header class="text-center mb-16 space-y-6">
+
+            <div class="inline-flex p-[2px] rounded-lg bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
+
+                <div class="flex items-center gap-3 bg-black px-4 py-2 rounded-lg">
+                    <img src="logo.png" alt="Logo" class="w-18 h-18">
+
+                    <h5 class="text-4xl font-black tracking-tighter leading-tight 
+        bg-clip-text text-transparent 
+        bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
+                        ImagineAI
+                    </h5>
+                </div>
+
+            </div>
+            <h1 class="text-6xl md:text-8xl font-black tracking-tighter leading-tight">
+                <span class="bg-clip-text text-transparent bg-linear-to-b from-white to-gray-400">Transform</span>
+                <span
+                    class="bg-clip-text text-transparent bg-linear-to-r from-indigo-400 via-purple-400 to-pink-400">Words</span>
+                <span class="bg-clip-text text-transparent bg-linear-to-b from-white to-gray-400">to Art</span>
+            </h1>
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
+                Experience the next generation of creative expression. Type anything and watch the AI bring your vision
+                to life in <span class="text-indigo-400 font-semibold">high resolution</span>.
+            </p>
+        </header>
+
+        <div
+            class="w-full bg-white/[0.03] backdrop-blur-3xl border border-white/10 rounded-[2.5rem] p-4 md:p-10 shadow-2xl space-y-10">
+
+            <form id="image-form" class="relative group">
+                <div
+                    class="absolute -inset-1 bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl blur opacity-20 group-focus-within:opacity-40 transition duration-500">
+                </div>
+
+                <div class="relative flex flex-col md:flex-row gap-4">
+                    <div class="relative flex-1">
+                        <div class="absolute left-5 top-1/2 -translate-y-1/2 text-gray-500">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z">
+                                </path>
+                            </svg>
+                        </div>
+                        <input type="text" id="prompt-input"
+                            placeholder="A majestic dragon perched on a neon skyscraper..."
+                            class="w-full bg-black/40 border border-white/10 rounded-xl pl-14 pr-6 py-5 text-lg md:text-xl outline-none focus:border-indigo-500/50 transition-all placeholder:text-gray-600 text-white"
+                            required>
+                    </div>
+
+                    <button type="submit"
+                        class="bg-linear-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:to-pink-500 px-10 py-5 rounded-xl font-bold text-lg md:text-xl transition-all duration-300 hover:scale-[1.02] active:scale-95 shadow-lg shadow-indigo-500/20">
+                        Generate
+                    </button>
+                </div>
+            </form>
+
+            <div id="preview-container"
+                class="relative aspect-video w-full rounded-2xl overflow-hidden bg-black/50 border-2 border-dashed border-white/5 flex items-center justify-center transition-all duration-500 group">
+
+                <div
+                    class="absolute inset-0 bg-radial-[at_center] from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                </div>
+
+                <div id="placeholder"
+                    class="relative flex flex-col items-center justify-center text-center space-y-4 px-6 transition-all duration-700">
+                    <div class="w-24 h-24 rounded-full bg-white/5 flex items-center justify-center relative">
+                        <svg class="w-10 h-10 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-300 mb-1">Waiting for prompt</h3>
+                        <p class="text-gray-600 max-w-xs">Your unique masterpiece will be rendered here as soon as you
+                            hit generate.</p>
+                    </div>
+                </div>
+
+                <img id="output-image" src="" alt=""
+                    class="w-full h-full object-contain hidden transition-all duration-1000 scale-110">
+                <div class="absolute bottom-4 right-4 hover:scale-110 transition-all duration-300 "
+                    title="Download Image">
+                    <button id="download-btn" class="bg-indigo-600 text-white px-4 py-2 rounded-full">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M12 3V15"></path>
+                            <path d="M7 10L12 15L17 10"></path>
+                            <path d="M5 21H19"></path>
+                        </svg>
+                    </button>
+                </div>
+
+
+                <div id="loading-overlay"
+                    class="absolute inset-0 bg-black/80 backdrop-blur-md hidden flex-col items-center justify-center space-y-6">
+                    <div class="relative">
+                        <div class="w-20 h-20 border-2 border-indigo-500/20 rounded-full"></div>
+                        <div
+                            class="absolute top-0 left-0 w-20 h-20 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin">
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-indigo-400 font-bold text-xl tracking-widest uppercase animate-pulse">Rendering
+                        </p>
+                        <p class="text-gray-400 text-sm mt-2"> Please wait for the image to be generated.</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <section
+            class="w-full max-w-2xl mt-16 p-8 bg-white/[0.02] backdrop-blur-3xl border border-white/5 rounded-[2rem] shadow-xl">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="p-2 rounded-lg bg-indigo-500/20 text-indigo-400">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z">
+                        </path>
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="text-xl font-bold text-white">API Configuration</h2>
+                    <p class="text-gray-500 text-sm">Use your own Clipdrop credentials</p>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="relative group">
+                    <div
+                        class="absolute -inset-0.5 bg-indigo-500/20 rounded-xl blur opacity-0 group-focus-within:opacity-100 transition duration-300">
+                    </div>
+                    <div class="relative flex flex-col sm:flex-row gap-3">
+                        <input type="password" id="api-key-input" placeholder="Paste your API Key here..."
+                            class="flex-1 bg-black/40 border border-white/10 rounded-xl px-5 py-3 outline-none focus:border-indigo-500/50 transition-all text-white placeholder:text-gray-600">
+                        <button id="api-key-btn"
+                            class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-6 py-3 rounded-xl transition-all shadow-lg shadow-indigo-500/10 active:scale-95 whitespace-nowrap">
+                            Save Configuration
+                        </button>
+                    </div>
+                </div>
+
+                <!--------------- Setup Guide -->
+                <div class="pt-6 border-t border-white/5">
+                    <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">How to get your key
+                    </h3>
+                    <ol class="space-y-4">
+                        <li class="flex gap-4">
+                            <span
+                                class="flex-none w-6 h-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs font-bold text-indigo-400">1</span>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Visit the <a href="https://clipdrop.co/apis/account" target="_blank"
+                                    class="text-indigo-400 hover:text-indigo-300 underline underline-offset-4 decoration-indigo-500/30">Clipdrop
+                                    API Portal</a>
+                            </p>
+                        </li>
+                        <li class="flex gap-4">
+                            <span
+                                class="flex-none w-6 h-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs font-bold text-indigo-400">2</span>
+                            <p class="text-gray-400 text-sm leading-relaxed">Login or create an account to access the
+                                dashboard.</p>
+                        </li>
+                        <li class="flex gap-4">
+                            <span
+                                class="flex-none w-6 h-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs font-bold text-indigo-400">3</span>
+                            <p class="text-gray-400 text-sm leading-relaxed">Click on <span
+                                    class="bg-white/5 px-2 py-0.5 rounded text-gray-200">Get your API Key</span> in your
+                                profile section.</p>
+                        </li>
+                        <li class="flex gap-4">
+                            <span
+                                class="flex-none w-6 h-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs font-bold text-indigo-400">4</span>
+                            <p class="text-gray-400 text-sm leading-relaxed text-balance">Copy the key, paste it above,
+                                and click <span class="text-white font-medium">Save Configuration</span>.</p>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
