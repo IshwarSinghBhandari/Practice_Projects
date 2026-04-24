@@ -63,3 +63,18 @@
 //     }
 // }
 // console.log("large number in array = " , large)
+
+
+// 5. Find the factorial of a number.----------------------------
+ const num = 5;
+
+// //  #1 method
+//  const numArray = Array.from({length:num},(_,i) =>i+1 )
+//  const factorial = numArray.reduce( (acc,val) => acc * val,1)
+//  console.log("Factorial = ", factorial)
+// #2 method
+// let factorial=1
+// for(let i=1 ;i<= num ; i++ ){
+//     factorial *=i
+// }
+// console.log("Factorial = ", factorial)
