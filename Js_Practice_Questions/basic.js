@@ -50,3 +50,16 @@
 // }
 
 
+// 4. Find the largest number in an array.----------------------
+
+// const arr = [3,4,4,234,5,56,23,34];
+// // #1 method
+// console.log(Math.max(...arr))
+// // #2 method
+// let large= 0
+// for( let i in arr){
+//     if(large < arr[i]){
+//         large = arr[i]       
+//     }
+// }
+// console.log("large number in array = " , large)
