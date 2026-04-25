@@ -158,3 +158,14 @@
 // arr.sort((a,b) => b - a);
 // let secondLargest = arr[1];
 // console.log(secondLargest);
+
+// 10. Convert the first letter of each word in a string to uppercase.---------------------
+// const str ="ishwar singh bhandari";
+// // #1 method
+// let captalize = str.split(" ").map((i)=>{
+//     return i.charAt(0).toUpperCase() + i.slice(1)
+// }).join(' ')
+// console.log(captalize)
+// // #2 method
+// let result = str.replace(/\b\w/g, (char) => char.toUpperCase());
+// console.log(result);
