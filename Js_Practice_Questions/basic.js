@@ -62,8 +62,8 @@
 // console.log("large number in array = " , large)
 
 // 5. Find the factorial of a number.----------------------------
-//  const num = 5;
 
+//  const num = 5;
 // //  #1 method
 //  const numArray = Array.from({length:num},(_,i) =>i+1 )
 //  const factorial = numArray.reduce( (acc,val) => acc * val,1)
@@ -76,10 +76,10 @@
 // console.log("Factorial = ", factorial)
 
 // 6. Remove duplicate elements from an array.------------------------------
-const arr = [2, 3, 5, 4, 7, 8, 2, 4, 5, 5, 5, 5, 5, 5];
 
-// #1 method
-// const newarr = [];
+// const arr = [2, 3, 5, 4, 7, 8, 2, 4, 5, 5, 5, 5, 5, 5];
+// // #1 method
+// // const newarr = [];
 // for (let i = 0; i < arr.length; i++) {
 //   console.log(!newarr.includes(arr[i]));
 //   if (!newarr.includes(arr[i])) {
@@ -87,7 +87,31 @@ const arr = [2, 3, 5, 4, 7, 8, 2, 4, 5, 5, 5, 5, 5, 5];
 //   }
 // }
 // console.log(newarr);
+// // #2 method
+// console.log([...new Set(arr)]);
 
-// #2 method
-// console.log([...new Set(arr)])
+// 7. Swap two variables using a third variable.-----------------------------
 
+// let a = 23;
+// let b = 34;
+// console.log("a =" ,a , "b =" , b);
+// let c = a;
+//    a = b;
+//    b = c;
+// console.log("swaped  -  a =" ,a , "b =" , b);
+
+// 8. Swap two variables without using a third variable.-----------------------------
+// // #1 method
+// let a = 23;
+// let b = 34;
+// console.log("a =" ,a , "b =" , b);
+//    a = a+b;
+//    b = a-b;
+//    a = a-b;
+// console.log("swaped  -  a =" ,a , "b =" , b);
+// // #2 method
+// let a = 23;
+// let b = 34;
+// console.log("a =" ,a , "b =" , b);
+// [a, b] = [b, a];
+// console.log("swaped  -  a =" ,a , "b =" , b);
