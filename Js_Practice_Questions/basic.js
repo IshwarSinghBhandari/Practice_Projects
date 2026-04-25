@@ -115,3 +115,46 @@
 // console.log("a =" ,a , "b =" , b);
 // [a, b] = [b, a];
 // console.log("swaped  -  a =" ,a , "b =" , b);
+
+// 9. Find the second largest number in an array.--------------------------------
+
+// let arr = [23, 53, 2, 54, 95, 7, 34, 76, 9];
+
+// #1 method
+// let large = "";
+// let large2 = "";
+// let secondlarge = "";
+// for (let i = 0; i < arr.length; i++) {
+//   if (large2 < arr[i]) {
+//     large = i;
+//     large2 = arr[i];
+//   }
+// }
+// arr.splice(large, 1);
+// for (let i = 0; i < arr.length; i++) {
+//   if (secondlarge < arr[i]) {
+//     secondlarge = arr[i];
+//   }
+// }
+// console.log("secondlarge = ", secondlarge);
+
+// #2 method
+// let large = "";
+// let secondlarge = "";
+
+// for (let num of arr){
+
+//     if(num >large){
+//         // secondlarge = large;
+//         large = num
+//     }
+//     else if(num > secondlarge && num < large ){
+//         secondlarge = num
+//     }
+// }
+// console.log(secondlarge)
+
+// #3 method
+// arr.sort((a,b) => b - a);
+// let secondLargest = arr[1];
+// console.log(secondLargest);
