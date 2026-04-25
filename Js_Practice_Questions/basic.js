@@ -12,7 +12,6 @@
 // }
 // console.log(revStr2)
 
-
 // 2. Check if a string is a palindrome.-------------------
 
 // const string = 'madam'
@@ -25,7 +24,6 @@
 //     console.log("The string is not palindrome")
 // }
 
-
 // 3. Check if a number is prime.-----------------------
 
 // function PrimeNumber(num) {
@@ -37,7 +35,7 @@
 //    if(num % i === 0){
 //      console.log(i , " num");
 //     console.log(num % i);
-//     return false 
+//     return false
 //    }
 //   }
 //    return true
@@ -49,7 +47,6 @@
 //     console.log( "Is Not Prime Number");
 // }
 
-
 // 4. Find the largest number in an array.----------------------
 
 // const arr = [3,4,4,234,5,56,23,34];
@@ -59,14 +56,13 @@
 // let large= 0
 // for( let i in arr){
 //     if(large < arr[i]){
-//         large = arr[i]       
+//         large = arr[i]
 //     }
 // }
 // console.log("large number in array = " , large)
 
-
 // 5. Find the factorial of a number.----------------------------
- const num = 5;
+//  const num = 5;
 
 // //  #1 method
 //  const numArray = Array.from({length:num},(_,i) =>i+1 )
@@ -78,3 +74,20 @@
 //     factorial *=i
 // }
 // console.log("Factorial = ", factorial)
+
+// 6. Remove duplicate elements from an array.------------------------------
+const arr = [2, 3, 5, 4, 7, 8, 2, 4, 5, 5, 5, 5, 5, 5];
+
+// #1 method
+// const newarr = [];
+// for (let i = 0; i < arr.length; i++) {
+//   console.log(!newarr.includes(arr[i]));
+//   if (!newarr.includes(arr[i])) {
+//     newarr.push(arr[i]);
+//   }
+// }
+// console.log(newarr);
+
+// #2 method
+// console.log([...new Set(arr)])
+
