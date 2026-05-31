@@ -34,7 +34,8 @@
       })
 
         function addtoCart(e){
-            e.stopPropagation();
+            // e.stopPropagation();
+            e.cancleBubble=true;
             alert("item added to cart");
         }
         function modalBox(){
