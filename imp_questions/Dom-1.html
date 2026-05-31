@@ -1,0 +1,27 @@
+<!-- Method
+Properties
+Events
+handler -->
+
+
+<button>
+    Enter
+</button>
+<p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto ullam perferendis officia neque tempora explicabo libero omnis, facilis unde earum sint temporibus quae impedit dolore recusandae, porro sed modi fugit.
+</p>
+<script>
+    document.querySelector('button').onclick = function(){
+        document.querySelector('p').style.border ="solid";
+        document.querySelector('p').innerText ="Hellow <u>World</u>";
+        document.querySelector('p').innerHTML ="Hellow <u>World</u>";
+        document.querySelector('p').remove();
+
+    }
+
+    document.querySelector('button').addEventListener('click', function(){
+        document.querySelector('p').style.border ="dashed";
+        document.querySelector('p').innerText ="Hellow <u>hellow</u>";
+        document.querySelector('p').innerHTML ="Hellow <u>World</u>";
+    })
+</script>
