@@ -1,0 +1,17 @@
+<script>
+    let info ={
+        name : "John",
+        age : 30,
+        city : "New York",
+        show:function(){
+            console.log(this.name + " is " + this.age + " years old and lives in " + this.city);
+        },
+        showuser:()=>{
+            console.log(this);
+        }
+    }
+
+    console.log(info);
+    info.show();
+    info.showuser();
+</script>
