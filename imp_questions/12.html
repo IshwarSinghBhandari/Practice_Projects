@@ -1,0 +1,34 @@
+<script>
+  myfunc();
+
+  function myfunc() {
+    console.log("Hello World");
+  }
+
+  //here we have stored function as a value it is called as first class function
+  let myvar = function () {
+    console.log("hello");
+  };
+
+  console.log(typeof myvar);
+  myvar();
+
+  function xyz(a1, a2, a3) {
+    a3();
+  }
+
+  //here we have passed function as a argument as an argument or value , hence passed function is called as first calss function.
+  xyz(10, 20, function () {
+    console.log("a3 called");
+  });
+
+  //function which return a function as a value ,  then the returned func is called as "first calls function" and outer func is called as "higher order function".
+  function abc() {
+    console.log("func called");
+    return function () {
+      console.log("returned func called");
+    };
+  }
+
+  abc();
+</script>
