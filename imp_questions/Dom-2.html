@@ -33,7 +33,8 @@
         document.querySelector('.row').append(divTag);
       })
 
-        function addtoCart(){
+        function addtoCart(e){
+            e.stopPropagation();
             alert("item added to cart");
         }
         function modalBox(){
